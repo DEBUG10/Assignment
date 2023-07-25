@@ -13,6 +13,7 @@ def validateDate(date):
         print("Incorrect data format, should be YYYY-MM-DD")
         return False
     
+
 # Temperature Module
 def temperature(date=None):  
     # validate date before processing  
@@ -24,7 +25,6 @@ def temperature(date=None):
         for loop_data in data.get('list',[]):
             if date == loop_data.get('dt_txt','')[:10]:
                 res_string += "\n Temperature for the given date: " + str(date)+ " is " + str(loop_data['main']["temp"]) + "\t Time: " + loop_data['dt_txt'][10:]
-                data_found = True               
 
         if res_string=="":
            print('Not FOund')
@@ -34,6 +34,7 @@ def temperature(date=None):
     return False
     
     
+
         
 # Wind Module
 def wind_speed(date=None):
@@ -41,10 +42,18 @@ def wind_speed(date=None):
         url = "https://samples.openweathermap.org/data/2.5/forecast/hourly?q=London,us&appid=b6907d289e10d714a6e88b30761fae22"
         response = requests.get(url)
         data = response.json()
+        res_string = ""
         for loop_data in data.get('list',[]):
             if date == loop_data.get('dt_txt','')[:10]:
-                res_string = "Wind.Speed for the given date: " + str(date)+ " is " +  str(loop_data['wind']["speed"]) + "\t Time: " + loop_data['dt_txt'][10:]
-                print(res_string)
+                res_string += "\n Wind.Speed for the given date: " + str(date)+ " is " +  str(loop_data['wind']["speed"]) + "\t Time: " + loop_data['dt_txt'][10:]
+
+        if res_string=="":
+           print('Not FOund')
+        else:
+            print(res_string)
+
+    return False        
+                
     
 
 #Pressure Module
@@ -53,10 +62,18 @@ def pressure(date=None):
         url = "https://samples.openweathermap.org/data/2.5/forecast/hourly?q=London,us&appid=b6907d289e10d714a6e88b30761fae22"
         response = requests.get(url)
         data = response.json()
+        res_string = ""
         for loop_data in data.get('list',[]):
             if date == loop_data.get('dt_txt','')[:10]:
-                res_string = "Pressure for the given date: " + str(date)+ " is " +  str(loop_data['main']["pressure"]) + "\t Time: " + loop_data['dt_txt'][10:]
-                print(res_string)   
+                res_string += "\n Pressure for the given date: " + str(date)+ " is " +  str(loop_data['main']["pressure"]) + "\t Time: " + loop_data['dt_txt'][10:]
+ 
+
+        if res_string=="":
+           print('Not FOund')
+        else:
+            print(res_string)
+
+    return False 
     
 
 
